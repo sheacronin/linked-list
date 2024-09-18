@@ -32,12 +32,10 @@ class LinkedList
     size = 0
     if @head
       current_node = @head
-      until current_node == @tail
+      while current_node
         size += 1
         current_node = current_node.next_node
       end
-      # add tail node
-      size += 1
     end
     size
   end
@@ -56,19 +54,19 @@ class LinkedList
   # removes the last element from the list
   def pop
     new_tail = at(size - 2)
-    new_tail.next_node = nil
+    new_tail.next_node = nil if new_tail
     @tail = new_tail
   end
 
   # returns true if the passed in value is in the list and otherwise returns false.
   def contains?(value)
     current_node = @head
-    until current_node == @tail
+    while current_node
       return true if current_node.value == value
 
       current_node = current_node.next_node
     end
-    @tail.value == value
+    false
   end
 
   # returns the index of the node containing value, or nil if not found.
@@ -81,6 +79,21 @@ class LinkedList
       i += 1
       current_node = current_node.next_node
     end
+  end
+
+  # inserts a new node with the provided value at the given index
+  def insert_at(value, index)
+    next_node = at(index)
+    node = Node.new(value, next_node)
+    prev_node = at(index - 1)
+    prev_node.next_node = node
+  end
+
+  # removes the node at the given index
+  def remove_at(index)
+    prev_node = at(index - 1)
+    next_node = at(index + 1)
+    prev_node.next_node = next_node
   end
 
   # the format should be: ( value ) -> ( value ) -> ( value ) -> nil

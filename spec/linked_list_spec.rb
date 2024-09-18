@@ -113,4 +113,30 @@ RSpec.describe 'Linked List' do
     list.append('turtle')
     expect { puts list }.to output("( dog ) -> ( cat ) -> ( parrot ) -> ( turtle ) -> nil\n").to_stdout
   end
+
+  it 'inserts new node at index' do
+    list = LinkedList.new
+    list.append('dog')
+    list.append('cat')
+    list.append('parrot')
+    list.append('turtle')
+    expect { puts list }.to output("( dog ) -> ( cat ) -> ( parrot ) -> ( turtle ) -> nil\n").to_stdout
+
+    list.insert_at('flamingo', 2)
+    expect { puts list }.to output("( dog ) -> ( cat ) -> ( flamingo ) -> ( parrot ) -> ( turtle ) -> nil\n").to_stdout
+    expect(list.at(2).value).to be('flamingo')
+  end
+
+  it 'removes node at index' do
+    list = LinkedList.new
+    list.append('dog')
+    list.append('cat')
+    list.append('parrot')
+    list.append('turtle')
+    expect { puts list }.to output("( dog ) -> ( cat ) -> ( parrot ) -> ( turtle ) -> nil\n").to_stdout
+
+    list.remove_at(2)
+    expect { puts list }.to output("( dog ) -> ( cat ) -> ( turtle ) -> nil\n").to_stdout
+    expect(list.at(2).value).to be('turtle')
+  end
 end
