@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require_relative '../lib/linked_list'
+require_relative '../../lib/shea-linked_list/linked_list'
 
 RSpec.describe 'Linked List' do
   it 'appends a node' do
