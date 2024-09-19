@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './node'
+require 'shea-linked_list/node'
 
 # A linear collection of Node data elements that “point” to the next Node by means of a pointer
 class LinkedList
