@@ -42,6 +42,8 @@ class LinkedList
 
   # returns the node at the given index
   def at(index)
+    return nil if index.negative? || index > size - 1
+
     i = 0
     node = @head
     while i < index
@@ -83,17 +85,26 @@ class LinkedList
 
   # inserts a new node with the provided value at the given index
   def insert_at(value, index)
-    next_node = at(index)
-    node = Node.new(value, next_node)
-    prev_node = at(index - 1)
-    prev_node.next_node = node
+    case index
+    when 0 then prepend(value)
+    when size - 1 then append(value)
+    else
+      next_node = at(index)
+      node = Node.new(value, next_node)
+      prev_node = at(index - 1)
+      prev_node.next_node = node
+    end
   end
 
   # removes the node at the given index
   def remove_at(index)
     prev_node = at(index - 1)
     next_node = at(index + 1)
-    prev_node.next_node = next_node
+    if index.zero?
+      @head = next_node
+    else
+      prev_node.next_node = next_node
+    end
   end
 
   # the format should be: ( value ) -> ( value ) -> ( value ) -> nil
