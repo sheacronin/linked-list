@@ -147,6 +147,17 @@ describe 'insert_at' do
     expect(list.at(2).value).to be('flamingo')
   end
 
+  it 'inserts new node at index in small list' do
+    list = LinkedList.new
+    list.append('dog')
+    list.append('cat')
+    expect { puts list }.to output("( dog ) -> ( cat ) -> nil\n").to_stdout
+
+    list.insert_at('flamingo', 1)
+    expect { puts list }.to output("( dog ) -> ( flamingo ) -> ( cat ) -> nil\n").to_stdout
+    expect(list.at(1).value).to be('flamingo')
+  end
+
   it 'inserts at index 0' do
     list = LinkedList.new
     list.append('dog')

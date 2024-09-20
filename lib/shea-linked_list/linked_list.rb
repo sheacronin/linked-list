@@ -87,7 +87,7 @@ class LinkedList
   def insert_at(value, index)
     case index
     when 0 then prepend(value)
-    when size - 1 then append(value)
+    when size then append(value)
     else
       next_node = at(index)
       node = Node.new(value, next_node)
